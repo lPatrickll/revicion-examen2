@@ -26,13 +26,22 @@ describe("Buscar", () => {
     proyectos.push("proyecto2");
     expect(buscarProyectos("proyecto2", proyectos)).toEqual("proyecto2, proyecto2");
   });
+
+  it("encuentra los proyectos cuyo nombre incluye la cadena dada en una lista de varios proyectos", () => {
+    let proyectos = [];
+    proyectos.push("proyecto1");
+    proyectos.push("totalizador");
+    proyectos.push("fizzBuzz");
+    proyectos.push("proyecto2");
+    expect(buscarProyectos("proy", proyectos)).toEqual("proyecto1, proyecto2");
+  });
 });
 
 function buscarProyectos(nombre, proyectos) {
   let proyectosEncontrados = "";
 
   for (let i = 0; i < proyectos.length; i++) {
-    if (proyectos[i] === nombre) {
+    if (proyectos[i].includes(nombre)) {
       if (proyectosEncontrados !== "") {
         proyectosEncontrados += ", ";
       }
